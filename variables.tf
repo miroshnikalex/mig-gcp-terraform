@@ -50,6 +50,10 @@ variable "lnd_subnet_iprange1s" {
   default = "172.16.200.0/24"
 }
 
+variable "lnd_allowed_tcp_ports" {
+  type    = list(string)
+  default = ["22"]
+}
 #### development environment variables ####
 
 variable "dev_network_name" {
@@ -82,6 +86,10 @@ variable "dev_subnet_iprange1s" {
   default = "192.168.10.0/24"
 }
 
+variable "dev_allowed_tcp_ports" {
+  type    = list(string)
+  default = ["22"]
+}
 #### bastion host variables ####
 
 variable "bastion_lnd_ip_internal" {
