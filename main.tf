@@ -5,3 +5,11 @@ provider "google" {
   region      = var.gcp_region
   zone        = var.gcp_zone
 }
+
+terraform {
+  backend "gcs" {
+    credentials = "local/credentials.json"
+    bucket      = "tf-state-bkt-204090"
+    prefix      = "terraform/state"
+  }
+}

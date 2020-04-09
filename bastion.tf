@@ -3,6 +3,7 @@ resource "google_compute_instance" "bastion-vm" {
   machine_type   = var.bastion_vm_type
   zone           = var.gcp_zone
   can_ip_forward = true
+  tags           = ["bastion"]
   boot_disk {
     auto_delete = false
     initialize_params {

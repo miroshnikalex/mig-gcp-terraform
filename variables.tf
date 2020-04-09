@@ -129,3 +129,9 @@ variable "bastion_image" {
   type    = string
   default = "projects/gce-uefi-images/global/images/centos-7-v20200403"
 }
+
+#### storage variables ####
+variable "tf_storage_name" {
+  type    = string
+  default = "tf-state-bkt-204090"
+}
