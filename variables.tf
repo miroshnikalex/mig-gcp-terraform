@@ -153,7 +153,7 @@ variable "provisioning_bkt" {
 #### MIG variables ####
 variable "webserver_image" {
   type    = string
-  default = "projects/gce-uefi-images/global/images/centos-7-v20200403"
+  default = "projects/root-patrol-273614/global/images/dev-web-15042020"
 }
 
 variable "webserver_image_size" {

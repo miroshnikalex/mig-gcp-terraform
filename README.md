@@ -9,3 +9,6 @@ Version 2.1.0:
  - generic images
  - generic healthchecks
  - not a fully reusable template for MIG  
+
+Version 3.0.0-a:
+ - don't use. Still in development
