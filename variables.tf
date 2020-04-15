@@ -18,6 +18,15 @@ variable "gcp_zone" {
   default = "europe-west2-a"
 }
 
+variable "gcp_zone2" {
+  type    = string
+  default = "europe-west2-b"
+}
+
+variable "gcp_zone3" {
+  type    = string
+  default = "europe-west2-c"
+}
 #### landing zone variables ####
 
 variable "lnd_network_name" {
@@ -134,4 +143,20 @@ variable "bastion_image" {
 variable "tf_storage_name" {
   type    = string
   default = "tf-state-bkt-204090"
+}
+
+variable "provisioning_bkt" {
+  type    = string
+  default = "provisioning-bkt-204090"
+}
+
+#### MIG variables ####
+variable "webserver_image" {
+  type    = string
+  default = "projects/gce-uefi-images/global/images/centos-7-v20200403"
+}
+
+variable "webserver_image_size" {
+  type    = string
+  default = "120"
 }
