@@ -12,3 +12,9 @@ Version 2.1.0:
 
 Version 3.0.0-a:
  - don't use. Still in development
+
+Version 4.0.0
+ - MIG
+ - Global HTTP LB
+ - Healthchecks
+ - Firewall rules

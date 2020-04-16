@@ -5,7 +5,7 @@ resource "google_compute_firewall" "dev-tcp-allowed" {
   enable_logging = true
   priority       = 1000
   source_tags    = ["bastion"]
-  target_tags    = ["fleet"]
+  target_tags    = ["dev-webservers"]
   allow {
     protocol = "tcp"
     ports    = var.dev_tcp_allowed
@@ -18,7 +18,7 @@ resource "google_compute_firewall" "dev-tcp-denied" {
   direction     = "INGRESS"
   priority      = 1001
   source_ranges = ["0.0.0.0/0"]
-  target_tags   = ["fleet"]
+  target_tags   = ["dev-webservers"]
   deny {
     protocol = "tcp"
     ports    = var.dev_tcp_denied

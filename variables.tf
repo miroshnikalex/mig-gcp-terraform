@@ -136,7 +136,7 @@ variable "bastion_image_size" {
 
 variable "bastion_image" {
   type    = string
-  default = "projects/gce-uefi-images/global/images/centos-7-v20200403"
+  default = "projects/centos-cloud/global/images/centos-8-v20200413"
 }
 
 #### storage variables ####
@@ -153,10 +153,35 @@ variable "provisioning_bkt" {
 #### MIG variables ####
 variable "webserver_image" {
   type    = string
-  default = "projects/root-patrol-273614/global/images/dev-web-15042020"
+  default = "projects/root-patrol-273614/global/images/dev-web-160420"
 }
 
 variable "webserver_image_size" {
   type    = string
   default = "120"
+}
+
+variable "dev-frules-webservers" {
+  type    = string
+  default = "dev-webservers-fr"
+}
+
+variable "dev-fwriles-portrange" {
+  type    = string
+  default = "80"
+}
+
+variable "dev-web-hp" {
+  type    = string
+  default = "dev-webservers-http-proxy"
+}
+
+variable "dev-web-vm" {
+  type    = string
+  default = "g1-small"
+}
+
+variable "dev-web-mig-size" {
+  type    = string
+  default = "2"
 }
