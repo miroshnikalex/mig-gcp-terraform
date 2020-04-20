@@ -18,3 +18,7 @@ Version 4.0.0
  - Global HTTP LB
  - Healthchecks
  - Firewall rules
+
+Version 4.1.0:
+ - Added autoscaler to MIG
+ - replaced a couple hardcoded values with variables

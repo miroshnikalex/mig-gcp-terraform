@@ -167,8 +167,8 @@ variable "dev-frules-webservers" {
 }
 
 variable "dev-fwriles-portrange" {
-  type    = string
-  default = "80"
+  type    = list(string)
+  default = ["80"]
 }
 
 variable "dev-web-hp" {
@@ -184,4 +184,9 @@ variable "dev-web-vm" {
 variable "dev-web-mig-size" {
   type    = string
   default = "2"
+}
+
+variable "hc_source_ranges" {
+  type    = list(string)
+  default = ["35.191.0.0/16", "130.211.0.0/22", "209.85.152.0/22", "209.85.204.0/22"]
 }

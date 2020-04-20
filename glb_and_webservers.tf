@@ -54,6 +54,17 @@ resource "google_compute_http_health_check" "dev-web-hc" {
   }
 }
 
+resource "google_compute_autoscaler" "dev-webservers-as" {
+  provider = google-beta
+  name     = "dev-webservers-as"
+  target   = "google_compute_instance_group_manager.dev-webservers-rigm.id"
+
+  autoscaling_policy {
+    max_replicas    = 10
+    min_replicas    = 2
+    cooldown_period = 60
+  }
+}
 
 resource "google_compute_region_instance_group_manager" "dev-webservers-rigm" {
   provider = google-beta
@@ -109,9 +120,9 @@ resource "google_compute_firewall" "dev-webservers-hc" {
 
   allow {
     protocol = "tcp"
-    ports    = ["80"]
+    ports    = var.dev-fwriles-portrange
   }
 
-  source_ranges = ["35.191.0.0/16", "130.211.0.0/22", "209.85.152.0/22", "209.85.204.0/22"]
+  source_ranges = var.hc_source_ranges
   target_tags   = ["dev-webservers"]
 }
