@@ -22,3 +22,7 @@ Version 4.0.0
 Version 4.1.0:
  - Added autoscaler to MIG
  - replaced a couple hardcoded values with variables
+
+Version 4.2.0:
+ - Added autohealing capabilities
+ - Tested under the load

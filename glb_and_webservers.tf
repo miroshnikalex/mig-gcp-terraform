@@ -54,15 +54,32 @@ resource "google_compute_http_health_check" "dev-web-hc" {
   }
 }
 
-resource "google_compute_autoscaler" "dev-webservers-as" {
-  provider = google-beta
-  name     = "dev-webservers-as"
-  target   = "google_compute_instance_group_manager.dev-webservers-rigm.id"
+resource "google_compute_region_autoscaler" "dev-webservers-as" {
+  region = var.gcp_region
+  name   = "dev-webservers-as"
+  target = google_compute_region_instance_group_manager.dev-webservers-rigm.id
 
   autoscaling_policy {
-    max_replicas    = 10
+
+    max_replicas    = 6
     min_replicas    = 2
     cooldown_period = 60
+    cpu_utilization {
+      target = 0.5
+    }
+  }
+}
+
+resource "google_compute_health_check" "dev-webservers-autohealing" {
+  name                = "dev-webservers-autohealing-health-check"
+  check_interval_sec  = 5
+  timeout_sec         = 5
+  healthy_threshold   = 5
+  unhealthy_threshold = 5 # 25 seconds
+
+  http_health_check {
+    request_path = "/"
+    port         = "80"
   }
 }
 
@@ -76,6 +93,11 @@ resource "google_compute_region_instance_group_manager" "dev-webservers-rigm" {
   }
   base_instance_name = "dev-webservers"
   target_size        = var.dev-web-mig-size
+
+  auto_healing_policies {
+    health_check      = google_compute_health_check.dev-webservers-autohealing.self_link
+    initial_delay_sec = 180
+  }
 }
 
 resource "google_compute_instance_template" "dev-webservers-it" {
@@ -110,7 +132,6 @@ resource "google_compute_instance_template" "dev-webservers-it" {
     create_before_destroy = true
   }
 }
-
 
 resource "google_compute_firewall" "dev-webservers-hc" {
   name        = "dev-webservers-hc"
